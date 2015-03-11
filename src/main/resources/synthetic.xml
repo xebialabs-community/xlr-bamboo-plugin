@@ -5,5 +5,7 @@
 		<property name="bambooServer" category="input" label="Server" referenced-type="bamboo.Server" kind="ci" />
 		<property name="projPlanKey" category="input" />
 		<property name="buildNumber" category="output" />
+		<property name="buildState" category="output" />
+		<property name="state" category="output" />
 	</type>
 </synthetic>
