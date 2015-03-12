@@ -9,3 +9,11 @@ buildscript {
 
 apply plugin: "com.github.hierynomus.license"
 
+version="0.0.0"
+
+apply plugin: "com.github.hierynomus.license"
+
+license {
+    header rootProject.file('src/main/license/xebialabs_community.license')
+    strictCheck true
+}
