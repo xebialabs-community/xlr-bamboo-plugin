@@ -10,7 +10,7 @@ buildscript {
 apply plugin: "com.github.hierynomus.license"
 apply plugin: 'java'
 
-version="0.0.0"
+version="1.0.1"
 
 apply plugin: "com.github.hierynomus.license"
 
