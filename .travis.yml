@@ -2,7 +2,7 @@ language: java
 notifications:
   hipchat:
     rooms:
-      secure: <NEED TO ADD HIPCHAT KEY HERE>
+      secure: bTIge7GEp8HZPoISvRnBWz6IIIMWK2IenvLCSONtLuaYqJ0XZQLEf421Bc4FBnGHyxqviwa5QtU78XD1KXun5152UhtnLNppQ8t+9peWsP8sAhcVW06Mcllt24KMRct5YYEDlBF2ZNy8DXIh1eC/j3BSMK/vRsGLJuMvaKqae4c=
 deploy:
   provider: releases
   api_key:
