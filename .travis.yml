@@ -6,10 +6,7 @@ notifications:
 deploy:
   provider: releases
   api_key:
-    secure: <NEED TO ADD GITHUB KEY HERE>
+    secure: Mj5avFZ2ws/LOcbgsGCSJ4Yfgnt6SIJYaCPMauT5RKXvngKP8fEPi0akUXHYpURsZ4MYByMmS8Ol8wz8SOi4Pbtk5obyHu1xU22n8BtZbmdLcCIqd9NIogqFBgCHMQCVp/RjCa5C6c26fT7xFbhoVOoPGc12FsIarC4+gNVTh1A=
   file: build/libs/xlr-bamboo-plugin-1.0.1.jar
-  skip_cleanup: true
   on:
-    all_branches: true
-    tags: true
     repo: xebialabs-community/xlr-bamboo-plugin
