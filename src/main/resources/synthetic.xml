@@ -7,10 +7,12 @@
 
 -->
 <synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
 	<type type="bamboo.Server" extends="configuration.HttpConnection" >
-                <property name="checkConfigurationPath" hidden="true" default="/" />
-        <property name="scriptLocation" hidden="true" default="configuration/HttpConnectionCheck.py"/>
+		<property name="checkConfigurationPath" hidden="true" default="/" />
+		<property name="scriptLocation" hidden="true" default="configuration/HttpConnectionCheck.py"/>
 	</type>
+
 	<type type="bamboo.RunPlan" extends="xlrelease.PythonScript">
 		<property name="bambooServer" category="input" label="Server" referenced-type="bamboo.Server" kind="ci" />
 		<property name="projPlanKey" category="input" />
@@ -18,4 +20,14 @@
 		<property name="buildState" category="output" />
 		<property name="state" category="output" />
 	</type>
+
+	<type type="bamboo.TriggerDeployment" extends="xlrelease.PythonScript">
+		<property name="bambooServer" category="input" label="Server" referenced-type="bamboo.Server" kind="ci" />
+		<property name="projectName" category="input" label="Deployment project name" />
+		<property name="environmentName" category="input" />
+		<property name="versionName" category="input" />
+		<property name="deploymentResultId" kind="integer" category="output" />
+		<property name="href" category="output" />
+	</type>
+
 </synthetic>
