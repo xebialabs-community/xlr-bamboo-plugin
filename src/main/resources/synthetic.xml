@@ -14,6 +14,7 @@
 	</type>
 
 	<type type="bamboo.RunPlan" extends="xlrelease.PythonScript">
+                <property name="iconLocation" default="bamboo/BambooLogo.png" hidden="true"/>
 		<property name="bambooServer" category="input" label="Server" referenced-type="bamboo.Server" kind="ci" />
 		<property name="projPlanKey" category="input" />
 		<property name="buildNumber" category="output" />
@@ -22,6 +23,7 @@
 	</type>
 
 	<type type="bamboo.TriggerDeployment" extends="xlrelease.PythonScript">
+                <property name="iconLocation" default="bamboo/BambooLogo.png" hidden="true"/>
 		<property name="bambooServer" category="input" label="Server" referenced-type="bamboo.Server" kind="ci" />
 		<property name="projectName" category="input" label="Deployment project name" />
 		<property name="environmentName" category="input" />
