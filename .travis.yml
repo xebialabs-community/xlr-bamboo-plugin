@@ -7,7 +7,7 @@ notifications:
 deploy:
   provider: releases
   api_key:
-    secure: FdVcS+GUeR7zI8cCgOmUzvDB9ZcDAYoP9h48cnStVMKzYDb85aQ9DwKrPrIJiDOmTFyQ10tQjasgKLcHU/ECG0fvV6ZF7NNPVFQOKkDDXVkvcQ8ivSkFf7t8dIhcljNtXvmZHgzPK9ZZddq/jn+Nqv4d1qYY6yE7hST9lmvv5aU=
+    secure: KUindhMBELjpimFCSN0XDf9Tz2TNI7SveNo3inUdBVkL4hRa+jEJiFv6m1ujAIv7hfRRwynXwEW2xGTPDepLQJz4DfeMuwrpK7MZ33upwJxWdvtiD1VdvJ9k5nsk8KJMxdgOTgyNNk9gMZEknr///3m4KNfdeJ7n2UokncIxDe4=
   file_glob: true
   file: build/libs/*
   skip_cleanup: true
@@ -15,3 +15,4 @@ deploy:
     all_branches: true
     tags: true
     repo: xebialabs-community/xlr-bamboo-plugin
+
