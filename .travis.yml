@@ -1,13 +1,10 @@
 language: java
 jdk: openjdk8
 sudo: false
-notifications:
-  slack:
-    secure: KQSI+S0Xa5u3lEoF1X14atOHUGWie1hB7AIx11VlXDBstgooeP7/zPwlPwFd/AaN19Ac72psqcqZPetF4hQTIkQ+OXoldnbhXCb6lR3REUJXGFPi3+yg5AM425SF250Se9KJTLlBg+3oOhy0ZwTz8mvVtD+Shpl+bjOOpYnZsaw=
 deploy:
   provider: releases
   api_key:
-    secure: KUindhMBELjpimFCSN0XDf9Tz2TNI7SveNo3inUdBVkL4hRa+jEJiFv6m1ujAIv7hfRRwynXwEW2xGTPDepLQJz4DfeMuwrpK7MZ33upwJxWdvtiD1VdvJ9k5nsk8KJMxdgOTgyNNk9gMZEknr///3m4KNfdeJ7n2UokncIxDe4=
+    secure: dMayYe6XnGGOTydZxSpIW7LMt3ATTzSPG/fgIAr2LqKXI7t0cB3PyMUtHMRLXij96jCRMes38UJ+1ELuVwEW9Gf7lyY58rPkoS2fxaPweYYkm9qgcyCgrRFLSAnLcBODnXFoEv4A/YDS18WiMo+XH7fedzkfvs8mYtv5x8pz5DY=
   file_glob: true
   file: build/libs/*
   skip_cleanup: true
