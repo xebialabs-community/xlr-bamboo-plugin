@@ -11,44 +11,36 @@ import sys
 import time
 import com.xhaus.jyson.JysonCodec as json
 
-print "Executing RunPlan.py\n"
+print "Executing CreateRelease.py\n"
 
 if bambooServer is None:
-	print "No server provided."
-	sys.exit(1)
+  print "No server provided."
+  sys.exit(1)
 
 contentType = 'application/json'
 headers = {'accept' : 'application/json'}
 
-def finished(brkey):
-	response = request.get('/rest/api/latest/result/' + brkey, contentType=contentType, headers=headers)
-	return json.loads(response.response)['finished']
+def getProjectId(projectName):
+  print "Executing getProjectId() with projectName %s\n" % projectName
+  response = request.get('rest/api/latest/deploy/project/all', contentType=contentType, headers=headers)
+  for item in json.loads(response.response):
+    if item['name'] == projectName:
+        print "Project ID for %s is %s\n" % (projectName, item['id'])
+        return item['id']
+  print "Error:  project not found for %s\n" % projectName
+  sys.exit(1)
 
-def successful(brkey):
-	response = request.get('/rest/api/latest/result/' + brkey, contentType=contentType, headers=headers)
-	return json.loads(response.response)['successful']
+def createRelease(projectId, planResultKey, versionName):
+  print "Executing createRelease() with projectId %s and versionId %s\n" % (projectId, versionName)
+  reqBody = '{"planResultKey" : "%s", "name" : "%s"}' % (planResultKey, versionName)
+  response = request.post('rest/api/latest/deploy/project/%s/version' % projectId, reqBody, contentType=contentType, headers=headers)
+  result = json.loads(response.response)
 
-def getStatesAndTimes(brkey):
-	response = request.get('/rest/api/latest/result/' + brkey, contentType=contentType, headers=headers)
-	jsonData = json.loads(response.response)
-	return (jsonData['buildState'], jsonData['state'], jsonData['prettyBuildStartedTime'], jsonData['prettyBuildCompletedTime'])
+
+
 
 credentials = CredentialsFallback(bambooServer, username, password).getCredentials()
 request = HttpRequest(bambooServer, credentials['username'], credentials['password'])
-response = request.post('/rest/api/latest/queue/' + projPlanKey, '{}', contentType=contentType, headers=headers)
-result = json.loads(response.response)
-buildNumber = result['buildNumber']
-print 'Build number is ' + str(buildNumber) + '\n'
-brkey = result['buildResultKey']
+projectId = getProjectId(projectName)
 
-while (not finished(brkey)):
-	time.sleep(5)
-
-(buildState, state, prettyBuildStartedTime, prettyBuildCompletedTime) = getStatesAndTimes(brkey)
-
-print "Build job started at " + prettyBuildStartedTime + "\n"
-
-if successful(brkey):
-	print "Build job completed successfully at " + prettyBuildCompletedTime + "\n"
-else:
-	print "Build job failed at " + prettyBuildCompletedTime + "\n"
+createRelease(projectId, planResultKey, versionName)
