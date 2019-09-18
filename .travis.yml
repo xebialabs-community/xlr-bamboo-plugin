@@ -1,4 +1,6 @@
 language: java
+jdk: openjdk8
+sudo: false
 notifications:
   slack:
     secure: KQSI+S0Xa5u3lEoF1X14atOHUGWie1hB7AIx11VlXDBstgooeP7/zPwlPwFd/AaN19Ac72psqcqZPetF4hQTIkQ+OXoldnbhXCb6lR3REUJXGFPi3+yg5AM425SF250Se9KJTLlBg+3oOhy0ZwTz8mvVtD+Shpl+bjOOpYnZsaw=
