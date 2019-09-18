@@ -30,11 +30,15 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		<property name="state" category="output" />
 	</type>
 
+<<<<<<< HEAD
+	<type type="bamboo.TriggerDeployment" extends="bamboo.Task">
+=======
 	<type type="bamboo.TriggerDeployment" extends="xlrelease.PythonScript">
                 <property name="iconLocation" default="bamboo/BambooLogo.png" hidden="true"/>
 		<property name="bambooServer" category="input" label="Server" referenced-type="bamboo.Server" kind="ci" />
 		<property name="username" category="input" required="false"/>
     <property name="password" category="input" required="false" password="true"/>
+>>>>>>> Updates to make `username` & `password` overrideable
 		<property name="projectName" category="input" label="Deployment project name" />
 		<property name="environmentName" category="input" />
 		<property name="versionName" category="input" />
