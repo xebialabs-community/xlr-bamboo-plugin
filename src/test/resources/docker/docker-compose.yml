@@ -10,16 +10,18 @@
 
 bamboo:
     image: atlassian/bamboo-server
+    volumes:
+      - ./bamboo:/var/atlassian/application-data/bamboo
     ports:
       - "54663:54663"
       - "8085:8085"
 
-xlr:
+xlrbb:
   image: xebialabsunsupported/xlr_dev_run:8.6.1
   volumes:
     - ~/xl-licenses:/license
     - ./../../../../:/data
   links:
-   - yt
+   - bamboo
   ports:
    - "5516:5516"

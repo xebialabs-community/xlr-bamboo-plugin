@@ -26,7 +26,8 @@ def getProjectId(projectName):
   response = request.get('rest/api/latest/deploy/project/all', contentType=contentType, headers=headers)
   for item in json.loads(response.response):
     if item['name'] == projectName:
-      return item['id']
+        print "Project ID for %s is %s\n" % (projectName, item['id'])
+        return item['id']
   print "Error:  project not found for %s\n" % projectName
   sys.exit(1)
 
@@ -35,7 +36,8 @@ def getEnvironmentId(projectId, environmentName):
   response = request.get('rest/api/latest/deploy/project/%s' % projectId, contentType=contentType, headers=headers)
   for item in json.loads(response.response)['environments']:
     if item['name'] == environmentName:
-      return item['id']
+        print "Environment ID for %s is %s\n" % (environmentName, item['id'])
+        return item['id']
   print "Error:  environment not found for %s, %s\n" % (projectName, environmentName)
   sys.exit(1)
 
@@ -44,7 +46,8 @@ def getVersionId(projectId, versionName):
   response = request.get('rest/api/latest/deploy/project/%s/versions' % projectId, contentType=contentType, headers=headers)
   for item in json.loads(response.response)['versions']:
     if item['name'] == versionName:
-      return item['id']
+        print "Version ID for %s is %s\n" % (versionName, item['id'])
+        return item['id']
   print "Error:  version not found for %s, %s, %s\n" % (projectName, environmentName, versionName)
   sys.exit(1)
 

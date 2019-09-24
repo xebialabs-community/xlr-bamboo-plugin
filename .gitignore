@@ -2,3 +2,4 @@
 build
 temp
 supervisord.*
+src/test/resources/docker/bamboo/*

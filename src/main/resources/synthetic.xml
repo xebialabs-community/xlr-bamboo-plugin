@@ -42,4 +42,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		<property name="href" category="output" />
 	</type>
 
+	<type type="bamboo.CreateRelease" extends="bamboo.Task">
+		<property name="projectName" category="input" label="Deployment project name" />
+		<property name="planResultKey" category="input" label="Project Build Result" />
+		<property name="versionName" category="input" />
+	</type>
+
 </synthetic>
