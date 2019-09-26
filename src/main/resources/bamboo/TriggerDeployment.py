@@ -51,6 +51,29 @@ def getVersionId(projectId, versionName):
   print "Error:  version not found for %s, %s, %s\n" % (projectName, environmentName, versionName)
   sys.exit(1)
 
+def getPlanKey(projectName)
+  print "Executing getPlanKey() with projectName %s\n" % projectName
+  response = request.get('rest/api/latest/deploy/project/all', contentType=contentType, headers=headers)
+  for item in json.loads(response.response):
+    if item['name'] == projectName:
+        print "planKey for %s is %s\n" % (projectName, item['planKey.key'])
+        return item['planKey.key']
+  print "Error:  project not found for %s\n" % projectName
+  sys.exit(1)
+
+def getPlanResultKey(planKey, versionName)
+  #e.g. SER-AR-139, planKey = SER-AR, versionName = 3.1.0-131
+  planKeyResult = planKey + versionName(versionName.index("-"):)
+  print "planKey: %s, versionName: %s, planKeyResult: %s\n" % (planKey, versionName, planKeyResult)
+  return planKey + planKeyResult
+
+def createDeploymentVersion(projectId, planKeyResult, versionName)
+  print "Executing createDeploymentVersion() with projectId %s and versionName %s\n" % (projectId, versionName)
+  response = request.post('rest/api/latest/deploy/project/%s/version' % (projectId), '{"planResultKey" : "%s", "name" : "%s"}' % (planKeyResult, versionName), contentType=contentType, headers=headers)
+  result = json.loads(response.response)
+  print (result['id'])
+  return (result['id'])
+
 def triggerDeployment(environmentId, versionId):
   print "Executing triggerDeployment() with environmentId %s and versionId %s\n" % (environmentId, versionId)
   response = request.post('rest/api/latest/queue/deployment/?environmentId=%s&versionId=%s' % (environmentId, versionId), '{}', contentType=contentType, headers=headers)
@@ -62,6 +85,9 @@ credentials = CredentialsFallback(bambooServer, username, password).getCredentia
 request = HttpRequest(bambooServer, credentials['username'], credentials['password'])
 projectId = getProjectId(projectName)
 environmentId = getEnvironmentId(projectId, environmentName)
-versionId = getVersionId(projectId, versionName)
+#versionId = getVersionId(projectId, versionName)
+planKey = getPlanKey(projectId)
+planKeyResult = getPlanKeyResult(planKey, versionName)
+versionId = createDeploymentVersion(projectId, versionName)
 
 (deploymentResultId, href) = triggerDeployment(environmentId, versionId)
