@@ -56,8 +56,10 @@ def getPlanKey(projectName):
   response = request.get('rest/api/latest/deploy/project/all', contentType=contentType, headers=headers)
   for item in json.loads(response.response):
     if item['name'] == projectName:
-        print "planKey for %s is %s\n" % (projectName, item['planKey.key'])
-        return item['planKey.key']
+        print "item for %s is %s\n" % (projectName, item)
+        print "planKey for %s is %s\n" % (projectName, item['planKey'])
+        print "planKey.key for %s is %s\n" % (projectName, item['planKey']['key'])
+        return item['planKey']['key']
   print "Error:  project not found for %s\n" % projectName
   sys.exit(1)
 
@@ -82,12 +84,24 @@ def triggerDeployment(environmentId, versionId):
   return result['deploymentResultId'], result['link']['href']
 
 credentials = CredentialsFallback(bambooServer, username, password).getCredentials()
+print "1) credentials: %s" % credentials
+
 request = HttpRequest(bambooServer, credentials['username'], credentials['password'])
+print "2) request: %s" % request
+
 projectId = getProjectId(projectName)
+print "3) projectId: %s" % projectId
+
 environmentId = getEnvironmentId(projectId, environmentName)
+print "4) environmentId: %s" % environmentId
 #versionId = getVersionId(projectId, versionName)
 planKey = getPlanKey(projectId)
+print "5) planKey: %s" % planKey
+
 planKeyResult = getPlanKeyResult(planKey, versionName)
+print "6) planKeyResult: %s" % planKeyResult
+
 versionId = createDeploymentVersion(projectId, versionName)
+print "7) versionId: %s" % versionId
 
 (deploymentResultId, href) = triggerDeployment(environmentId, versionId)
