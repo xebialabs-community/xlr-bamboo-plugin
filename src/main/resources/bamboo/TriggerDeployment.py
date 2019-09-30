@@ -59,15 +59,15 @@ def getPlanKey(projectName):
         print "item for %s is %s\n" % (projectName, item)
         print "planKey for %s is %s\n" % (projectName, item['planKey'])
         print "planKey.key for %s is %s\n" % (projectName, item['planKey']['key'])
-        return item['planKey']['key']
+        return item['planKey.key']
   print "Error:  project not found for %s\n" % projectName
   sys.exit(1)
 
-def getPlanResultKey(planKey, versionName):
+def getPlanKeyResult(planKey, versionName):
   #e.g. SER-AR-139, planKey = SER-AR, versionName = 3.1.0-131
   planKeyRslt = planKey + versionName[versionName.index("-"):]
   print "planKey: %s, versionName: %s, planKeyResult: %s\n" % (planKey, versionName, planKeyRslt)
-  return planKey + planKeyRslt
+  return planKeyRslt
 
 def createDeploymentVersion(projectId, planKeyResult, versionName):
   print "Executing createDeploymentVersion() with projectId %s and versionName %s\n" % (projectId, versionName)
