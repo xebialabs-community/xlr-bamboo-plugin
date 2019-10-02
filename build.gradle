@@ -21,9 +21,14 @@ apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'maven'
 dependencies {
-    jython python(":httplib2:0.11.3") {
+    jython python(":httplib2:0.13.1") {
       copy {
         from "python2/httplib2"
+      }
+    }
+    jython python(":pyunit:1.4.1") {
+      copy {
+        from "python2/pyunit"
       }
     }
 }

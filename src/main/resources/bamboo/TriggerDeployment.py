@@ -54,17 +54,17 @@ def getVersionId(projectId, versionName):
 def getPlanKey(projectName):
   print "Executing getPlanKey() with projectName %s\n" % projectName
   response = request.get('rest/api/latest/deploy/project/all', contentType=contentType, headers=headers)
+  #print "response: %s " % response
   for item in json.loads(response.response):
     if item['name'] == projectName:
-        print "item for %s is %s\n" % (projectName, item)
         print "planKey for %s is %s\n" % (projectName, item['planKey'])
         print "planKey.key for %s is %s\n" % (projectName, item['planKey']['key'])
-        return item['planKey.key']
+        return item['planKey']['key']
   print "Error:  project not found for %s\n" % projectName
   sys.exit(1)
 
 def getPlanKeyResult(planKey, versionName):
-  #e.g. SER-AR-139, planKey = SER-AR, versionName = 3.1.0-131
+  #e.g. SER-AR-139, planKey = SER-AR, versionName = 3.1.0-139
   planKeyRslt = planKey + versionName[versionName.index("-"):]
   print "planKey: %s, versionName: %s, planKeyResult: %s\n" % (planKey, versionName, planKeyRslt)
   return planKeyRslt
@@ -94,14 +94,15 @@ print "3) projectId: %s" % projectId
 
 environmentId = getEnvironmentId(projectId, environmentName)
 print "4) environmentId: %s" % environmentId
+
 #versionId = getVersionId(projectId, versionName)
-planKey = getPlanKey(projectId)
+planKey = getPlanKey(projectName)
 print "5) planKey: %s" % planKey
 
 planKeyResult = getPlanKeyResult(planKey, versionName)
 print "6) planKeyResult: %s" % planKeyResult
 
-versionId = createDeploymentVersion(projectId, versionName)
+versionId = createDeploymentVersion(projectId, planKeyResult, versionName)
 print "7) versionId: %s" % versionId
 
 (deploymentResultId, href) = triggerDeployment(environmentId, versionId)
