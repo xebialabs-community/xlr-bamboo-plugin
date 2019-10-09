@@ -1,15 +1,28 @@
 language: java
 jdk: openjdk8
 sudo: false
+before_install:
+  - openssl aes-256-cbc -K $encrypted_3b4b24cefadd_key -iv $encrypted_3b4b24cefadd_iv
+    -in deploy_key.enc -out /tmp/deploy_key -d
+  - eval "$(ssh-agent -s)"
+  - echo -e "Host $DIST_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - chmod 600 /tmp/deploy_key
+  - ssh-add /tmp/deploy_key
 deploy:
-  provider: releases
-  api_key:
-    secure: dMayYe6XnGGOTydZxSpIW7LMt3ATTzSPG/fgIAr2LqKXI7t0cB3PyMUtHMRLXij96jCRMes38UJ+1ELuVwEW9Gf7lyY58rPkoS2fxaPweYYkm9qgcyCgrRFLSAnLcBODnXFoEv4A/YDS18WiMo+XH7fedzkfvs8mYtv5x8pz5DY=
-  file_glob: true
-  file: build/libs/*
-  skip_cleanup: true
-  on:
-    all_branches: true
-    tags: true
-    repo: xebialabs-community/xlr-bamboo-plugin
-
+   - provider: releases
+     api_key:
+       secure: dMayYe6XnGGOTydZxSpIW7LMt3ATTzSPG/fgIAr2LqKXI7t0cB3PyMUtHMRLXij96jCRMes38UJ+1ELuVwEW9Gf7lyY58rPkoS2fxaPweYYkm9qgcyCgrRFLSAnLcBODnXFoEv4A/YDS18WiMo+XH7fedzkfvs8mYtv5x8pz5DY=
+     file_glob: true
+     file: build/libs/*
+     skip_cleanup: true
+     on:
+       all_branches: true
+       tags: true
+       repo: xebialabs-community/xlr-bamboo-plugin
+   - provider: script
+     skip_cleanup: true
+     script: rsync --update -raz -i $TRAVIS_BUILD_DIR/build/libs/*.jar $DIST_USER@$DIST_HOST:$DIST_PATH/${TRAVIS_REPO_SLUG#*/}/
+     on:
+       all_branches: true
+#       tags: true
+       repo: xebialabs-community/xlr-bamboo-plugin

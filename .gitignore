@@ -3,3 +3,4 @@ build
 temp
 supervisord.*
 src/test/resources/docker/bamboo/*
+deploy_key
