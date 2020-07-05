@@ -70,7 +70,7 @@ task integrationTest(type: Test, dependsOn: ['build']) {
 
 
 license {
-  header rootProject.file('LICENSE.md')
+  header rootProject.file('License.md')
   strictCheck false
   excludes(["**/*.json", "**/httplib2/**/*.*"])
   ext.year = Calendar.getInstance().get(Calendar.YEAR)
