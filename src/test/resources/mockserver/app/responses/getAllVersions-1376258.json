@@ -1,0 +1,133 @@
+{
+  "size": 3,
+  "versions": [
+    {
+      "id": 1638404,
+      "name": "release-myTest",
+      "creationDate": 1572550657006,
+      "creatorUserName": "someone",
+      "items": [
+        {
+          "id": 2359298,
+          "name": "App.class",
+          "planResultKey": {
+            "key": "MYN-MYN-9",
+            "entityKey": {
+              "key": "MYN-MYN"
+            },
+            "resultNumber": 9
+          },
+          "type": "BAM_ARTIFACT",
+          "label": "App.class",
+          "location": "myTest2/target/classes/demo",
+          "copyPattern": "App.class",
+          "size": 520,
+          "artifact": {
+            "id": 1900550,
+            "label": "App.class",
+            "size": 520,
+            "isSharedArtifact": true,
+            "isGloballyStored": false,
+            "linkType": "com.atlassian.bamboo.plugin.artifact.handler.local:ServerLocalArtifactHandler",
+            "planResultKey": {
+              "key": "MYN-MYN-9",
+              "entityKey": {
+                "key": "MYN-MYN"
+              },
+              "resultNumber": 9
+            },
+            "archiverType": "NONE"
+          }
+        }
+      ],
+      "operations": {
+        "canView": true,
+        "canEdit": true,
+        "canDelete": true,
+        "allowedToExecute": false,
+        "canExecute": false,
+        "allowedToCreateVersion": true,
+        "allowedToSetVersionStatus": true
+      },
+      "creatorDisplayName": "Some Person",
+      "creatorGravatarUrl": "https://secure.gravatar.com/avatar/d952b1c96027e6af0ac1557a7aaf8b88.jpg?r=g&s=24&d=mm",
+      "planBranchName": "master",
+      "ageZeroPoint": 1572550657006
+    },
+    {
+      "id": 1638403,
+      "name": "release-2",
+      "creationDate": 1572549540605,
+      "creatorUserName": "someone",
+      "items": [
+        {
+          "id": 2359297,
+          "name": "App.class",
+          "planResultKey": {
+            "key": "MYN-MYN-8",
+            "entityKey": {
+              "key": "MYN-MYN"
+            },
+            "resultNumber": 8
+          },
+          "type": "BAM_ARTIFACT",
+          "label": "App.class",
+          "location": "myTest2/target/classes/demo",
+          "copyPattern": "App.class",
+          "size": 520,
+          "artifact": {
+            "id": 1900549,
+            "label": "App.class",
+            "size": 520,
+            "isSharedArtifact": true,
+            "isGloballyStored": false,
+            "linkType": "com.atlassian.bamboo.plugin.artifact.handler.local:ServerLocalArtifactHandler",
+            "planResultKey": {
+              "key": "MYN-MYN-8",
+              "entityKey": {
+                "key": "MYN-MYN"
+              },
+              "resultNumber": 8
+            },
+            "archiverType": "NONE"
+          }
+        }
+      ],
+      "operations": {
+        "canView": true,
+        "canEdit": true,
+        "canDelete": true,
+        "allowedToExecute": false,
+        "canExecute": false,
+        "allowedToCreateVersion": true,
+        "allowedToSetVersionStatus": true
+      },
+      "creatorDisplayName": "Some Person",
+      "creatorGravatarUrl": "https://secure.gravatar.com/avatar/d952b1c96027e6af0ac1557a7aaf8b88.jpg?r=g&s=24&d=mm",
+      "planBranchName": "master",
+      "ageZeroPoint": 1572549540633
+    },
+    {
+      "id": 1638402,
+      "name": "release-1",
+      "creationDate": 1572548620455,
+      "creatorUserName": "someone",
+      "items": [],
+      "operations": {
+        "canView": true,
+        "canEdit": true,
+        "canDelete": true,
+        "allowedToExecute": false,
+        "canExecute": false,
+        "allowedToCreateVersion": true,
+        "allowedToSetVersionStatus": true
+      },
+      "creatorDisplayName": "Some Person",
+      "creatorGravatarUrl": "https://secure.gravatar.com/avatar/d952b1c96027e6af0ac1557a7aaf8b88.jpg?r=g&s=24&d=mm",
+      "planBranchName": "master",
+      "ageZeroPoint": 1572549241386
+    }
+  ],
+  "start-index": 0,
+  "max-result": 3
+}

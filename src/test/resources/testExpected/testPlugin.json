@@ -1,0 +1,8 @@
+{
+    "${BuildState}": "Successful",
+    "${State}": "Successful",
+    "${BuildNumber}": "9",
+    "${DeploymentResultId}": "2916354",
+    "${HREF}": "http://localhost:8085/rest/api/latest/deploy/result/2916354",
+    "${PlanResultKey}": "MYN-MYN-9"
+}

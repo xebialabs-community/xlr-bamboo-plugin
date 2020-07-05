@@ -1,0 +1,44 @@
+{
+  "id": 1376258,
+  "oid": "q7xjs31efyte",
+  "key": {
+    "key": "1376258"
+  },
+  "name": "MyNewDeployment",
+  "planKey": {
+    "key": "MYN-MYN"
+  },
+  "description": "",
+  "environments": [
+    {
+      "id": 1540098,
+      "key": {
+        "key": "1376258-1540098"
+      },
+      "name": "localhost",
+      "description": "",
+      "deploymentProjectId": 1376258,
+      "operations": {
+        "canView": true,
+        "canEdit": true,
+        "canDelete": true,
+        "allowedToExecute": true,
+        "canExecute": true,
+        "allowedToCreateVersion": false,
+        "allowedToSetVersionStatus": false
+      },
+      "position": 0,
+      "configurationState": "TASKED"
+    }
+  ],
+  "operations": {
+    "canView": true,
+    "canEdit": true,
+    "canDelete": true,
+    "allowedToExecute": false,
+    "canExecute": false,
+    "allowedToCreateVersion": true,
+    "allowedToSetVersionStatus": false
+  },
+  "repositorySpecsManaged": false
+}

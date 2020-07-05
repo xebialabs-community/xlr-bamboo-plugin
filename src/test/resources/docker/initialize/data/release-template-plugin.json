@@ -1,0 +1,263 @@
+[{
+  "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed",
+  "type": "xlrelease.Release",
+  "title": "bamboo template",
+  "scheduledStartDate": "2020-07-05T09:00:00-07:00",
+  "flagStatus": "OK",
+  "overdueNotified": false,
+  "maxConcurrentReleases": 100,
+  "releaseTriggers": [],
+  "teams": [
+    {
+      "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Teame39117045c334a2680be10b7d1e45aed",
+      "type": "xlrelease.Team",
+      "teamName": "Template Owner",
+      "members": [
+        "admin"
+      ],
+      "roles": [],
+      "permissions": [
+        "template#edit",
+        "template#lock_task",
+        "template#view",
+        "template#edit_triggers",
+        "template#edit_precondition",
+        "template#edit_security",
+        "template#create_release",
+        "template#edit_failure_handler"
+      ]
+    },
+    {
+      "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Teamde587c672b6f4b8baed6a30554291c23",
+      "type": "xlrelease.Team",
+      "teamName": "Release Admin",
+      "members": [],
+      "roles": [],
+      "permissions": [
+        "release#edit_precondition",
+        "release#edit",
+        "release#task_transition",
+        "release#edit_task_attachments",
+        "release#reassign_task",
+        "release#edit_task_input_output_properties",
+        "release#edit_task_tags",
+        "release#edit_security",
+        "release#edit_task_description",
+        "release#view",
+        "release#lock_task",
+        "release#start",
+        "release#edit_blackout",
+        "template#view",
+        "release#edit_failure_handler",
+        "release#abort",
+        "release#edit_task_script",
+        "release#edit_task_configuration_facet",
+        "release#edit_task_flag",
+        "release#edit_task_dates",
+        "release#edit_task"
+      ]
+    }
+  ],
+  "memberViewers": [],
+  "roleViewers": [],
+  "attachments": [],
+  "phases": [
+    {
+      "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477",
+      "type": "xlrelease.Phase",
+      "title": "New Phase",
+      "flagStatus": "OK",
+      "overdueNotified": false,
+      "tasks": [
+        {
+          "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477/Taskc795f53f64d84cfc912f9fc2c088f121",
+          "type": "xlrelease.CustomScriptTask",
+          "title": "Run Plan",
+          "flagStatus": "OK",
+          "overdueNotified": false,
+          "comments": [],
+          "container": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477",
+          "facets": [],
+          "attachments": [],
+          "status": "PLANNED",
+          "waitForScheduledStartDate": true,
+          "delayDuringBlackout": false,
+          "postponedDueToBlackout": false,
+          "hasBeenFlagged": false,
+          "hasBeenDelayed": false,
+          "taskFailureHandlerEnabled": false,
+          "failuresCount": 0,
+          "variableMapping": {
+            "pythonScript.state": "${State}",
+            "pythonScript.planResultKey": "${PlanResultKey}",
+            "pythonScript.buildNumber": "${BuildNumber}",
+            "pythonScript.buildState": "${BuildState}"
+          },
+          "tags": [],
+          "dueSoonNotified": false,
+          "locked": false,
+          "checkAttributes": false,
+          "watchers": [],
+          "pythonScript": {
+            "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477/Taskc795f53f64d84cfc912f9fc2c088f121/PythonScript",
+            "type": "bamboo.RunPlan",
+            "customScriptTask": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477/Taskc795f53f64d84cfc912f9fc2c088f121",
+            "bambooServer": "Configuration/Custom/bamboo server",
+            "projPlanKey": "MYN-MYN"
+          },
+          "keepPreviousOutputPropertiesOnRetry": false
+        },
+        {
+          "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477/Taskaa6cce6013f742379d5282745e25ac9e",
+          "type": "xlrelease.CustomScriptTask",
+          "title": "Create Release",
+          "flagStatus": "OK",
+          "overdueNotified": false,
+          "comments": [],
+          "container": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477",
+          "facets": [],
+          "attachments": [],
+          "status": "PLANNED",
+          "waitForScheduledStartDate": true,
+          "delayDuringBlackout": false,
+          "postponedDueToBlackout": false,
+          "hasBeenFlagged": false,
+          "hasBeenDelayed": false,
+          "taskFailureHandlerEnabled": false,
+          "failuresCount": 0,
+          "variableMapping": {},
+          "tags": [],
+          "dueSoonNotified": false,
+          "locked": false,
+          "checkAttributes": false,
+          "watchers": [],
+          "pythonScript": {
+            "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477/Taskaa6cce6013f742379d5282745e25ac9e/PythonScript",
+            "type": "bamboo.CreateRelease",
+            "customScriptTask": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477/Taskaa6cce6013f742379d5282745e25ac9e",
+            "bambooServer": "Configuration/Custom/bamboo server",
+            "projectName": "MyNewDeployment",
+            "planResultKey": "${PlanResultKey}",
+            "versionName": "release-myTest"
+          },
+          "keepPreviousOutputPropertiesOnRetry": false
+        },
+        {
+          "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477/Task9c725c1e2ab7447681f4913410b686c3",
+          "type": "xlrelease.CustomScriptTask",
+          "title": "Trigger Deployment",
+          "flagStatus": "OK",
+          "overdueNotified": false,
+          "comments": [],
+          "container": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477",
+          "facets": [],
+          "attachments": [],
+          "status": "PLANNED",
+          "waitForScheduledStartDate": true,
+          "delayDuringBlackout": false,
+          "postponedDueToBlackout": false,
+          "hasBeenFlagged": false,
+          "hasBeenDelayed": false,
+          "taskFailureHandlerEnabled": false,
+          "failuresCount": 0,
+          "variableMapping": {
+            "pythonScript.href": "${HREF}",
+            "pythonScript.deploymentResultId": "${DeploymentResultId}"
+          },
+          "tags": [],
+          "dueSoonNotified": false,
+          "locked": false,
+          "checkAttributes": false,
+          "watchers": [],
+          "pythonScript": {
+            "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477/Task9c725c1e2ab7447681f4913410b686c3/PythonScript",
+            "type": "bamboo.TriggerDeployment",
+            "customScriptTask": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Phased80b13515d9e4da49e7bead9f63e5477/Task9c725c1e2ab7447681f4913410b686c3",
+            "bambooServer": "Configuration/Custom/bamboo server",
+            "projectName": "MyNewDeployment",
+            "environmentName": "localhost",
+            "versionName": "release-myTest",
+            "deploymentResultId": 0
+          },
+          "keepPreviousOutputPropertiesOnRetry": false
+        }
+      ],
+      "release": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed",
+      "status": "PLANNED"
+    }
+  ],
+  "queryableStartDate": "2020-07-05T09:00:00-07:00",
+  "realFlagStatus": "OK",
+  "status": "TEMPLATE",
+  "tags": [],
+  "variables": [
+    {
+      "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Variableb3cf67e54991434690e5fde578da6837",
+      "type": "xlrelease.StringVariable",
+      "key": "PlanResultKey",
+      "requiresValue": false,
+      "showOnReleaseStart": false,
+      "inherited": false,
+      "multiline": false
+    },
+    {
+      "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Variable27a94c5b0c9e421592aa8d6692e77944",
+      "type": "xlrelease.StringVariable",
+      "key": "BuildNumber",
+      "requiresValue": false,
+      "showOnReleaseStart": false,
+      "inherited": false,
+      "multiline": false
+    },
+    {
+      "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Variable403ac8c2790248009625509e97973ae0",
+      "type": "xlrelease.StringVariable",
+      "key": "BuildState",
+      "requiresValue": false,
+      "showOnReleaseStart": false,
+      "inherited": false,
+      "multiline": false
+    },
+    {
+      "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Variable2faaaa407bfe4b98a7917f801156326c",
+      "type": "xlrelease.StringVariable",
+      "key": "State",
+      "requiresValue": false,
+      "showOnReleaseStart": false,
+      "inherited": false,
+      "multiline": false
+    },
+    {
+      "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Variable3a4c56d8483144b2857dc6ee52f9c301",
+      "type": "xlrelease.IntegerVariable",
+      "key": "DeploymentResultId",
+      "requiresValue": false,
+      "showOnReleaseStart": false,
+      "label": "",
+      "inherited": false,
+      "value": 0
+    },
+    {
+      "id": "Applications/Release65fa86047b4d424987c00bbcf1e0f9ed/Variable6f8ef27332d64a5e98999952bb36b368",
+      "type": "xlrelease.StringVariable",
+      "key": "HREF",
+      "requiresValue": false,
+      "showOnReleaseStart": false,
+      "label": "",
+      "inherited": false,
+      "multiline": false
+    }
+  ],
+  "calendarPublished": false,
+  "tutorial": false,
+  "abortOnFailure": false,
+  "allowConcurrentReleasesFromTrigger": true,
+  "runningTriggeredReleasesCount": 0,
+  "createdFromTrigger": false,
+  "extensions": [],
+  "autoStart": false,
+  "automatedResumeCount": 0,
+  "riskScore": "000",
+  "totalRiskScore": "0000",
+  "riskProfile": "Configuration/riskProfiles/Default risk profile"
+}]

@@ -5,3 +5,8 @@ temp
 supervisord.*
 src/test/resources/docker/bamboo/*
 deploy_key
+.vscode
+.classpath
+.project
+.settings/
+bin/

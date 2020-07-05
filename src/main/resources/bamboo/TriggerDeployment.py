@@ -1,5 +1,5 @@
 #
-#Copyright 2019 XEBIALABS
+#Copyright 2020 XEBIALABS
 #
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -53,7 +53,7 @@ def getVersionId(projectId, versionName):
 
 def triggerDeployment(environmentId, versionId):
   print "Executing triggerDeployment() with environmentId %s and versionId %s\n" % (environmentId, versionId)
-  response = request.post('rest/api/latest/queue/deployment/?environmentId=%s&versionId=%s' % (environmentId, versionId), '{}', contentType=contentType, headers=headers)
+  response = request.post('rest/api/latest/queue/deployment?environmentId=%s&versionId=%s' % (environmentId, versionId), '{}', contentType=contentType, headers=headers)
   result = json.loads(response.response)
   print (result['deploymentResultId'], result['link']['href'])
   return (result['deploymentResultId'], result['link']['href'])

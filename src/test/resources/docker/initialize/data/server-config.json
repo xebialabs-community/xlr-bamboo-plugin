@@ -1,0 +1,8 @@
+{
+  "id":"unused",
+  "type":"bamboo.Server",
+  "title":"bamboo server",
+  "url":"http://mockserver:5000",
+  "username": "admin",
+  "password": "admin"
+}
