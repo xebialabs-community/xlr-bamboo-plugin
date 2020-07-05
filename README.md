@@ -107,7 +107,7 @@ docker-compose up
 Set up the mock Bamboo server exactly as shown with a server name of 'bamboo server' and the username/passwor admin/admin.
 ![mockBambooServer](images/mockBambooServer.png)
 
-* To shut down and remove the docker containers, in a terminal cd to the src/test/resources/docker/initialize/data directory, and run
+* To shut down and remove the docker containers - in a terminal, cd to the src/test/resources/docker/initialize/data directory, and run
 
 ```bash
 docker-compose down
