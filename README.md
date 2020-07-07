@@ -46,7 +46,7 @@ The Run Plan task accepts a Bamboo project-plan-key (for example, MYN-MYN).  It 
 
 The Create Release task take a Bamboo Deployment Project Name, a Project Build Result (which is the Plan Result Key returned after a Plan is run, such as 'MYN-MYN-9'), and a Version Name.  It calls Bamboo's API to create a release for that project.
 
-![run-plan screenshot](images/run-plan.png)
+![run-plan screenshot](images/createRelease.png)
 
 ### Trigger Deployment
 
