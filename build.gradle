@@ -1,7 +1,6 @@
 plugins {
   id "com.github.hierynomus.license" version "0.14.0"
   id 'nebula.release' version '6.0.0'
-  id "com.xebialabs.xl.docker" version "1.1.0"
   id "com.github.hierynomus.jython" version "0.8.0"
 }
 
@@ -28,10 +27,11 @@ repositories {
 
 
 dependencies {
+    // Place rest-assured before JUnit dependency to make sure correct Hamcrest is used
+    testCompile 'io.rest-assured:rest-assured:3.2.0'
     testCompile "junit:junit:4.11"
     testCompile "com.googlecode.json-simple:json-simple:1.1.1"
     testCompile "org.assertj:assertj-core:3.6.2"
-    testCompile "io.rest-assured:rest-assured:3.2.0"
     testCompile "org.testcontainers:testcontainers:1.12.0"
     testCompile "org.skyscreamer:jsonassert:1.5.0"
 
@@ -58,10 +58,9 @@ task integrationTest(type: Test, dependsOn: ['build']) {
     include '**/*IntegrationTest.class'
     // To run tests - 
     // 1. Docker  and Docker Compose must be installed 
-    // 2. The XL-Release image expects to find a valid XL-Release license here: ~/xl-licenses/xl-release-license.lic
-    // 3. To run the test - ./gradlew clean integrationTest
+    // 2. To run the test - ./gradlew clean integrationTest
     //   The test will set up a temporary xlr/mockserver testbed using docker. The mockserver
-    //   will serve up the property or yaml files
+    //   will serve up Bamboo Rest Api Responses
     // After testing is complete, the test docker containers are stopped and removed. 
 
     // show standard out and standard error of the test JVM(s) on the console
