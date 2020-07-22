@@ -11,7 +11,7 @@
 version: '3'
 services:
   xlr:
-    image: xebialabs/xl-release:9.6
+    image: xebialabs/xl-release:9.7
     volumes:
       #- ~/xl-licenses/xl-release-license.lic:/opt/xebialabs/xl-release-server/conf/xl-release-license.lic
       - ./../../../../build/libs/:/opt/xebialabs/xl-release-server/default-plugins/__local__/
