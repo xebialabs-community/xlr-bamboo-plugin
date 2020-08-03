@@ -27,7 +27,7 @@ This plugin allows XL Release to run a Bamboo plan, create a Bamboo Release or t
 ## Requirements
 
 * XL Release 9.0+
-* This has been tested with Bamboo version 6.10.3
+* This has been tested with XL Release 9.7 and Bamboo version 6.10.3
 
 ## Installation
 
@@ -71,7 +71,7 @@ Build and package the plugins with...
 1. Clone this git project to your local dev environment
 2. You will need to have Docker and Docker Compose installed.
 3. The XL-Release docker image uses the community trial license
-4. Open a terminal in the root of the xlr-variable-setter-plugin project and run the following gradle task 
+4. Open a terminal in the root of the xlr-bamboo-plugin project and run the following gradle task 
 
 ```bash
 ./gradlew clean integrationTest
@@ -107,7 +107,7 @@ docker-compose up
 Set up the mock Bamboo server exactly as shown with a server name of 'bamboo server' and the username/passwor admin/admin.
 ![mockBambooServer](images/mockBambooServer.png)
 
-* To shut down and remove the docker containers - in a terminal, cd to the src/test/resources/docker/initialize/data directory, and run
+* To shut down and remove the docker containers - in a terminal, cd to the src/test/resources/docker directory, and run
 
 ```bash
 docker-compose down
