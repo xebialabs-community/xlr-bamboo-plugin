@@ -1,0 +1,108 @@
+{
+    "expand": "changes,metadata,plan,vcsRevisions,artifacts,comments,labels,jiraIssues,variables,stages",
+    "link": {
+      "href": "http://localhost:8085/rest/api/latest/result/MYN-MYN-9",
+      "rel": "self"
+    },
+    "plan": {
+      "shortName": "MyNewPlan",
+      "shortKey": "MYN",
+      "type": "chain",
+      "enabled": true,
+      "link": {
+        "href": "http://localhost:8085/rest/api/latest/plan/MYN-MYN",
+        "rel": "self"
+      },
+      "key": "MYN-MYN",
+      "name": "MyNewProject - MyNewPlan",
+      "planKey": {
+        "key": "MYN-MYN"
+      }
+    },
+    "planName": "MyNewPlan",
+    "projectName": "MyNewProject",
+    "buildResultKey": "MYN-MYN-9",
+    "lifeCycleState": "Finished",
+    "id": 1245213,
+    "buildStartedTime": "2019-10-31T14:26:05.952-05:00",
+    "prettyBuildStartedTime": "Thu, 31 Oct, 02:26 PM",
+    "buildCompletedTime": "2019-10-31T14:26:09.056-05:00",
+    "buildCompletedDate": "2019-10-31T14:26:09.056-05:00",
+    "prettyBuildCompletedTime": "Thu, 31 Oct, 02:26 PM",
+    "buildDurationInSeconds": 3,
+    "buildDuration": 3104,
+    "buildDurationDescription": "3 seconds",
+    "buildRelativeTime": "1 minute ago",
+    "vcsRevisionKey": "37c34d0504ffb0464d8a37ece7d1d01c3230b55b",
+    "vcsRevisions": {
+      "size": 1,
+      "start-index": 0,
+      "max-result": 1
+    },
+    "buildTestSummary": "1 passed",
+    "successfulTestCount": 1,
+    "failedTestCount": 0,
+    "quarantinedTestCount": 0,
+    "skippedTestCount": 0,
+    "continuable": false,
+    "onceOff": false,
+    "restartable": false,
+    "notRunYet": false,
+    "finished": true,
+    "successful": true,
+    "buildReason": "Manual run by <a href=\"http://127.0.0.1:8085/browse/user/someone\">Some Person</a>",
+    "reasonSummary": "Manual run by <a href=\"http://127.0.0.1:8085/browse/user/someone\">Some Person</a>",
+    "artifacts": {
+      "size": 1,
+      "start-index": 0,
+      "max-result": 1
+    },
+    "comments": {
+      "size": 0,
+      "start-index": 0,
+      "max-result": 0
+    },
+    "labels": {
+      "size": 0,
+      "start-index": 0,
+      "max-result": 0
+    },
+    "jiraIssues": {
+      "size": 0,
+      "start-index": 0,
+      "max-result": 0
+    },
+    "variables": {
+      "size": 0,
+      "start-index": 0,
+      "max-result": 0
+    },
+    "stages": {
+      "size": 1,
+      "start-index": 0,
+      "max-result": 1
+    },
+    "changes": {
+      "size": 0,
+      "start-index": 0,
+      "max-result": 0
+    },
+    "metadata": {
+      "size": 2,
+      "start-index": 0,
+      "max-result": 2
+    },
+    "key": "MYN-MYN-9",
+    "planResultKey": {
+      "key": "MYN-MYN-9",
+      "entityKey": {
+        "key": "MYN-MYN"
+      },
+      "resultNumber": 9
+    },
+    "state": "Successful",
+    "buildState": "Successful",
+    "number": 9,
+    "buildNumber": 9
+  }
+  

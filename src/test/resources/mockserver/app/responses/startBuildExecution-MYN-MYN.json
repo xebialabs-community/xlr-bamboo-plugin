@@ -1,0 +1,10 @@
+{
+    "planKey": "MYN-MYN",
+    "buildNumber": 9,
+    "buildResultKey": "MYN-MYN-9",
+    "triggerReason": "Manual build",
+    "link": {
+      "href": "http://localhost:8085/rest/api/latest/result/MYN-MYN-9",
+      "rel": "self"
+    }
+  }

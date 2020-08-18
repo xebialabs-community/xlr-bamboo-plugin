@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
 
-Copyright 2019 XEBIALABS
+Copyright 2020 XEBIALABS
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -24,11 +24,11 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		<property name="bambooServer" category="input" label="Server" referenced-type="bamboo.Server" kind="ci" />
 		<property name="username" category="input" required="false"/>
 		<property name="password" category="input" required="false" password="true"/>
-
 	</type>
 
 	<type type="bamboo.RunPlan" extends="bamboo.Task">
 		<property name="projPlanKey" category="input" />
+		<property name="planResultKey" category="output" />
 		<property name="buildNumber" category="output" />
 		<property name="buildState" category="output" />
 		<property name="state" category="output" />
@@ -39,7 +39,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 		<property name="environmentName" category="input" />
 		<property name="versionName" category="input" />
 		<property name="deploymentResultId" kind="integer" category="output" />
-		<property name="href" category="output" />
+		<property name="href" label="HREF" category="output" />
 	</type>
 
 	<type type="bamboo.CreateRelease" extends="bamboo.Task">

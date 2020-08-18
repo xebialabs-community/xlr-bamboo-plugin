@@ -1,5 +1,5 @@
 #
-# Copyright 2019 XEBIALABS
+# Copyright 2020 XEBIALABS
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -28,10 +28,10 @@ def successful(brkey):
 	response = request.get('/rest/api/latest/result/' + brkey, contentType=contentType, headers=headers)
 	return json.loads(response.response)['successful']
 
-def getStatesAndTimes(brkey):
+def getKeyStatesAndTimes(brkey):
 	response = request.get('/rest/api/latest/result/' + brkey, contentType=contentType, headers=headers)
 	jsonData = json.loads(response.response)
-	return (jsonData['buildState'], jsonData['state'], jsonData['prettyBuildStartedTime'], jsonData['prettyBuildCompletedTime'])
+	return (jsonData['planResultKey']['key'], jsonData['buildState'], jsonData['state'], jsonData['prettyBuildStartedTime'], jsonData['prettyBuildCompletedTime'])
 
 credentials = CredentialsFallback(bambooServer, username, password).getCredentials()
 request = HttpRequest(bambooServer, credentials['username'], credentials['password'])
@@ -44,7 +44,7 @@ brkey = result['buildResultKey']
 while (not finished(brkey)):
 	time.sleep(5)
 
-(buildState, state, prettyBuildStartedTime, prettyBuildCompletedTime) = getStatesAndTimes(brkey)
+(planResultKey, buildState, state, prettyBuildStartedTime, prettyBuildCompletedTime) = getKeyStatesAndTimes(brkey)
 
 print "Build job started at " + prettyBuildStartedTime + "\n"
 

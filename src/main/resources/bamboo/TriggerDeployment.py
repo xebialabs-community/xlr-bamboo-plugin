@@ -1,5 +1,5 @@
 #
-#Copyright 2019 XEBIALABS
+#Copyright 2020 XEBIALABS
 #
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -48,7 +48,8 @@ def getVersionId(projectId, versionName):
     if item['name'] == versionName:
         print "Version ID for %s is %s\n" % (versionName, item['id'])
         return item['id']
-  print "Error:  version not found for %s, %s\n" % (projectId, versionName)
+  #print "Error:  version not found for %s, %s\n" % (projectId, versionName)
+  print "Error:  version not found for %s, %s, %s\n" % (projectName, environmentName, versionName)
   sys.exit(1)
 
 def getPlanKey(projectName):
@@ -65,6 +66,7 @@ def getPlanKey(projectName):
 
 def getPlanKeyResult(planKey, versionName):
   #e.g. SER-AR-139, planKey = SER-AR, versionName = 3.1.0-139
+  print "in getPlanKeyResult- planKey: %s, versionName: %s" % (planKey,versionName)
   planKeyRslt = planKey + versionName[versionName.index("-"):]
   print "planKey: %s, versionName: %s, planKeyResult: %s\n" % (planKey, versionName, planKeyRslt)
   return planKeyRslt
@@ -105,6 +107,8 @@ environmentId = getEnvironmentId(projectId, environmentName)
 print "4) environmentId: %s" % environmentId
 
 #versionId = getVersionId(projectId, versionName)
+
+print "4a) before getPlanKey with projectName: %s" % projectName
 planKey = getPlanKey(projectName)
 print "5) planKey: %s" % planKey
 
