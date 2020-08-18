@@ -38,7 +38,7 @@ def getEnvironmentId(projectId, environmentName):
     if item['name'] == environmentName:
         print "Environment ID for %s is %s\n" % (environmentName, item['id'])
         return item['id']
-  print "Error:  environment not found for %s, %s\n" % (projectName, environmentName)
+  print "Error:  environment not found for %s, %s\n" % (projectId, environmentName)
   sys.exit(1)
 
 def getVersionId(projectId, versionName):
@@ -48,20 +48,78 @@ def getVersionId(projectId, versionName):
     if item['name'] == versionName:
         print "Version ID for %s is %s\n" % (versionName, item['id'])
         return item['id']
+  #print "Error:  version not found for %s, %s\n" % (projectId, versionName)
   print "Error:  version not found for %s, %s, %s\n" % (projectName, environmentName, versionName)
   sys.exit(1)
+
+def getPlanKey(projectName):
+  print "Executing getPlanKey() with projectName %s\n" % projectName
+  response = request.get('rest/api/latest/deploy/project/all', contentType=contentType, headers=headers)
+  #print "response: %s " % response
+  for item in json.loads(response.response):
+    if item['name'] == projectName:
+        print "planKey for %s is %s\n" % (projectName, item['planKey'])
+        print "planKey.key for %s is %s\n" % (projectName, item['planKey']['key'])
+        return item['planKey']['key']
+  print "Error:  project not found for %s\n" % projectName
+  sys.exit(1)
+
+def getPlanKeyResult(planKey, versionName):
+  #e.g. SER-AR-139, planKey = SER-AR, versionName = 3.1.0-139
+  print "in getPlanKeyResult- planKey: %s, versionName: %s" % (planKey,versionName)
+  planKeyRslt = planKey + versionName[versionName.index("-"):]
+  print "planKey: %s, versionName: %s, planKeyResult: %s\n" % (planKey, versionName, planKeyRslt)
+  return planKeyRslt
+
+def createDeploymentVersion(projectId, planKeyResult, versionName):
+  print "Executing createDeploymentVersion() with projectId %s and versionName %s\n" % (projectId, versionName)
+  response = request.post('rest/api/latest/deploy/project/%s/version' % (projectId), '{"planResultKey" : "%s", "name" : "%s"}' % (planKeyResult, versionName), contentType=contentType, headers=headers)
+  result = json.loads(response.response)
+  print (result['id'])
+  return result['id']
+
+def getDeploymentVersion(projectId, planKeyResult, versionName):
+  print "Executing getDeploymentVersion() with projectId %s and versionName %s\n" % (projectId, versionName)
+  response = request.get('rest/api/latest/deploy/project/%s/versions' % (projectId), contentType=contentType, headers=headers)
+  for item in json.loads(response.response)['versions']:
+    if item['name'] == versionName:
+        print "versionId for %s is %s\n" % (versionName, item['id'])
+        return item['id']
+  return None
 
 def triggerDeployment(environmentId, versionId):
   print "Executing triggerDeployment() with environmentId %s and versionId %s\n" % (environmentId, versionId)
   response = request.post('rest/api/latest/queue/deployment?environmentId=%s&versionId=%s' % (environmentId, versionId), '{}', contentType=contentType, headers=headers)
   result = json.loads(response.response)
   print (result['deploymentResultId'], result['link']['href'])
-  return (result['deploymentResultId'], result['link']['href'])
+  return result['deploymentResultId'], result['link']['href']
 
 credentials = CredentialsFallback(bambooServer, username, password).getCredentials()
+print "1) credentials: no value"
+
 request = HttpRequest(bambooServer, credentials['username'], credentials['password'])
+print "2) request: %s" % request
+
 projectId = getProjectId(projectName)
+print "3) projectId: %s" % projectId
+
 environmentId = getEnvironmentId(projectId, environmentName)
-versionId = getVersionId(projectId, versionName)
+print "4) environmentId: %s" % environmentId
+
+#versionId = getVersionId(projectId, versionName)
+
+print "4a) before getPlanKey with projectName: %s" % projectName
+planKey = getPlanKey(projectName)
+print "5) planKey: %s" % planKey
+
+planKeyResult = getPlanKeyResult(planKey, versionName)
+print "6) planKeyResult: %s" % planKeyResult
+
+versionId = getDeploymentVersion(projectId, planKeyResult, versionName)
+print "7) versionId: %s" % versionId
+
+if versionId is None:
+    versionId = createDeploymentVersion(projectId, planKeyResult, versionName)
+print "8) versionId: %s" % versionId
 
 (deploymentResultId, href) = triggerDeployment(environmentId, versionId)
