@@ -1,5 +1,5 @@
 #
-#Copyright 2020 XEBIALABS
+#Copyright 2022 XEBIALABS
 #
 #Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 #
@@ -58,10 +58,26 @@ def triggerDeployment(environmentId, versionId):
   print (result['deploymentResultId'], result['link']['href'])
   return (result['deploymentResultId'], result['link']['href'])
 
+error = False
 credentials = CredentialsFallback(bambooServer, username, password).getCredentials()
 request = HttpRequest(bambooServer, credentials['username'], credentials['password'])
-projectId = getProjectId(projectName)
-environmentId = getEnvironmentId(projectId, environmentName)
-versionId = getVersionId(projectId, versionName)
 
-(deploymentResultId, href) = triggerDeployment(environmentId, versionId)
+if projectId:
+    if projectName:
+        if projectId != getProjectId(projectName):
+            print "Error: mismatch between projectId %s and projectName %s" % (projectId, projectName)
+            error = True
+else:
+    if projectName:
+        projectId = getProjectId(projectName)
+    else:
+        print "Error: neither projectId nor projectName was specified"
+        error = True
+
+if not error:
+    environmentId = getEnvironmentId(projectId, environmentName)
+    versionId = getVersionId(projectId, versionName)
+    (deploymentResultId, href) = triggerDeployment(environmentId, versionId)
+    # task.schedule("bamboo/TriggerDeployment.wait-for-deployment.py")
+else:
+    task.schedule("bamboo/TriggerDeployment.fail.py")

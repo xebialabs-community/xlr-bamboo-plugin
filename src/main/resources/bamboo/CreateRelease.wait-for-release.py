@@ -33,7 +33,7 @@ try:
     status = getReleaseStatus(projectId, planResultKey, versionName, releaseId)
 
     if status = "successful":
-        print "Release %s has completed successfully."
+        print "Release %s has completed successfully." % releaseId
     elif status = "in-progress":
         task.schedule("bamboo/CreateRelease.wait-for-release.py")
     else:
