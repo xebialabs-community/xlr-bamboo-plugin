@@ -15,51 +15,51 @@ import com.xhaus.jyson.JysonCodec as json
 print "Executing CreateRelease.py\n"
 
 if bambooServer is None:
-  print "No server provided."
-  sys.exit(1)
+    print "No server provided."
+    sys.exit(1)
 
 contentType = 'application/json'
 headers = {'accept' : 'application/json'}
 
 def getProjectId(projectName):
-  print "Executing getProjectId() with projectName %s\n" % projectName
-  response = request.get('rest/api/latest/deploy/project/all', contentType=contentType, headers=headers)
-  for item in json.loads(response.response):
-    if item['name'] == projectName:
-        print "Project ID for %s is %s\n" % (projectName, item['id'])
-        return item['id']
-  print "Error:  project not found for %s\n" % projectName
-  sys.exit(1)
+    print "Executing getProjectId() with projectName %s\n" % projectName
+    response = request.get('rest/api/latest/deploy/project/all', contentType=contentType, headers=headers)
+    if response.isSuccessful():
+        for item in json.loads(response.response):
+            if item['name'] == projectName:
+                print "Project ID for %s is %s\n" % (projectName, item['id'])
+                return item['id']
+        print "Error:  project not found for %s\n" % projectName
+        sys.exit(1)
+    else:
+        print "Error: HTTP status code %s" % str(response.getStatus())
+        sys.exit(1)
 
 def createRelease(projectId, planResultKey, versionName):
-  print "Executing createRelease() with projectId %s and versionId %s\n" % (projectId, versionName)
-  reqBody = '{"planResultKey" : "%s", "name" : "%s"}' % (planResultKey, versionName)
-  response = request.post('rest/api/latest/deploy/project/%s/version' % projectId, reqBody, contentType=contentType, headers=headers)
-  result = json.loads(response.response)
-  return str(result)
-
-error = False
+    print "Executing createRelease() with projectId %s and versionId %s\n" % (projectId, versionName)
+    reqBody = '{"planResultKey" : "%s", "name" : "%s"}' % (planResultKey, versionName)
+    response = request.post('rest/api/latest/deploy/project/%s/version' % projectId, reqBody, contentType=contentType, headers=headers)
+    if response.isSuccessful():
+        result = json.loads(response.response)
+        return str(result['id'])
+    else:
+        print "Error: HTTP status code %s" % str(response.getStatus())
+        sys.exit(1)
 
 credentials = CredentialsFallback(bambooServer, username, password).getCredentials()
-
 request = HttpRequest(bambooServer, credentials['username'], credentials['password'])
 
 if projectId:
     if projectName:
         if projectId != getProjectId(projectName):
             print "Error: mismatch between projectId %s and projectName %s" % (projectId, projectName)
-            error = True
+            sys.exit(1)
 else:
     if projectName:
         projectId = getProjectId(projectName)
     else:
         print "Error: neither projectId nor projectName was specified"
-        error = True
+        sys.exit(1)
 
-if not error:
-    releaseId = createRelease(projectId, planResultKey, versionName)
-    print "releaseId is %s" % str(releaseId)
-    # Uncomment when API call to request status is confirmed
-    # task.schedule("bamboo/CreateRelease.wait-for-release.py")
-else:
-    task.schedule("bamboo/CreateRelease.fail.py")
+releaseId = createRelease(projectId, planResultKey, versionName)
+print "releaseId is %s" % str(releaseId)
