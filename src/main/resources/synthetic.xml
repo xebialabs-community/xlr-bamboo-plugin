@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
 
-Copyright 2020 XEBIALABS
+Copyright 2022 XEBIALABS
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -14,38 +14,40 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 <synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-	<type type="bamboo.Server" extends="configuration.HttpConnection" >
-		<property name="checkConfigurationPath" hidden="true" default="/" />
-		<property name="scriptLocation" hidden="true" default="configuration/HttpConnectionCheck.py"/>
-	</type>
+    <type type="bamboo.Server" extends="configuration.HttpConnection" >
+        <property name="checkConfigurationPath" hidden="true" default="/" />
+        <property name="scriptLocation" hidden="true" default="configuration/HttpConnectionCheck.py"/>
+    </type>
 
-	<type type="bamboo.Task" extends="xlrelease.PythonScript" virtual="true">
-		<property name="iconLocation" default="bamboo/BambooLogo.png" hidden="true"/>
-		<property name="bambooServer" category="input" label="Server" referenced-type="bamboo.Server" kind="ci" />
-		<property name="username" category="input" required="false"/>
-		<property name="password" category="input" required="false" password="true"/>
-	</type>
+    <type type="bamboo.Task" extends="xlrelease.PythonScript" virtual="true">
+        <property name="iconLocation" default="bamboo/BambooLogo.png" hidden="true"/>
+        <property name="bambooServer" category="input" label="Server" referenced-type="bamboo.Server" kind="ci" />
+        <property name="username" category="input" required="false"/>
+        <property name="password" category="input" required="false" password="true"/>
+    </type>
 
-	<type type="bamboo.RunPlan" extends="bamboo.Task">
-		<property name="projPlanKey" category="input" />
-		<property name="planResultKey" category="output" />
-		<property name="buildNumber" category="output" />
-		<property name="buildState" category="output" />
-		<property name="state" category="output" />
-	</type>
+    <type type="bamboo.RunPlan" extends="bamboo.Task">
+        <property name="projPlanKey" category="input" />
+        <property name="planResultKey" category="output" />
+        <property name="buildNumber" category="output" />
+        <property name="buildState" category="output" />
+        <property name="state" category="output" />
+    </type>
 
-	<type type="bamboo.TriggerDeployment" extends="bamboo.Task">
-		<property name="projectName" category="input" label="Deployment project name" />
-		<property name="environmentName" category="input" />
-		<property name="versionName" category="input" />
-		<property name="deploymentResultId" kind="integer" category="output" />
-		<property name="href" label="HREF" category="output" />
-	</type>
+    <type type="bamboo.TriggerDeployment" extends="bamboo.Task">
+        <property name="projectName" category="input" label="Deployment project name" />
+        <property name="environmentName" category="input" />
+        <property name="versionName" category="input" />
+        <property name="deploymentResultId" kind="integer" category="output" />
+        <property name="href" label="HREF" category="output" />
+    </type>
 
-	<type type="bamboo.CreateRelease" extends="bamboo.Task">
-		<property name="projectName" category="input" label="Deployment project name" />
-		<property name="planResultKey" category="input" label="Project Build Result" />
-		<property name="versionName" category="input" />
-	</type>
+    <type type="bamboo.CreateRelease" extends="bamboo.Task">
+        <property name="projectId" category="input" required="false" label="Deployment project id" description="Optional. Provide project name if project id is not known." />
+        <property name="projectName" category="input" required="false" label="Deployment project name" description="Optional. Provide project id instead if project id is known." />
+        <property name="planResultKey" category="input" label="Project Build Result" />
+        <property name="versionName" category="input" />
+        <property name="releaseId" category="output" />
+    </type>
 
 </synthetic>
