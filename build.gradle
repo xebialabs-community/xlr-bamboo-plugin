@@ -1,10 +1,16 @@
 plugins {
   id "com.github.hierynomus.license" version "0.16.1"
   id 'nebula.release' version '11.0.0'
-  id "com.github.hierynomus.jython" version "0.8.0"
+  id "com.github.hierynomus.jython" version "0.11.0"
 }
 
 apply plugin: 'java'
+
+java {
+   toolchain {
+       languageVersion = JavaLanguageVersion.of(11)
+   }
+}
 
 if (!project.hasProperty('release.scope')) {
   project.ext['release.scope'] = 'patch'
@@ -22,15 +28,14 @@ repositories {
   }
 }
 
-/*
 dependencies {
     // Place rest-assured before JUnit dependency to make sure correct Hamcrest is used
-    testCompile 'io.rest-assured:rest-assured:3.2.0'
-    testCompile "junit:junit:4.11"
-    testCompile "com.googlecode.json-simple:json-simple:1.1.1"
-    testCompile "org.assertj:assertj-core:3.6.2"
-    testCompile "org.testcontainers:testcontainers:1.12.0"
-    testCompile "org.skyscreamer:jsonassert:1.5.0"
+    testImplementation 'io.rest-assured:rest-assured:5.2.0'
+    testImplementation "junit:junit:4.13"
+    testImplementation "com.googlecode.json-simple:json-simple:1.1.1"
+    testImplementation "org.assertj:assertj-core:3.23.1"
+    testImplementation "org.testcontainers:testcontainers:1.17.5"
+    testImplementation "org.skyscreamer:jsonassert:1.5.1"
 
     jython python(":httplib2:0.11.3") {
       copy {
@@ -38,22 +43,21 @@ dependencies {
       }
     }
 }
-*/
 
-// test {
+test {
     // Auto detected Unit tests only, exclude the end to end integration test
-//    exclude '**/*IntegrationTest.class'
+    exclude '**/*IntegrationTest.class'
 
     // show standard out and standard error of the test JVM(s) on the console
-//    testLogging.showStandardStreams = true
-// }
+    testLogging.showStandardStreams = true
+}
 
 
-// task integrationTest(type: Test, dependsOn: ['build']) {
+task integrationTest(type: Test, dependsOn: ['build']) {
     // do not automatically scan for tests
-//    scanForTestClasses = false
+    scanForTestClasses = false
     // explicitly include the integration test
-//    include '**/*IntegrationTest.class'
+    include '**/*IntegrationTest.class'
     // To run tests -
     // 1. Docker  and Docker Compose must be installed
     // 2. To run the test - ./gradlew clean integrationTest
@@ -62,8 +66,8 @@ dependencies {
     // After testing is complete, the test docker containers are stopped and removed.
 
     // show standard out and standard error of the test JVM(s) on the console
-//    testLogging.showStandardStreams = true
-// }
+    testLogging.showStandardStreams = true
+}
 
 license {
   header rootProject.file('License.md')
