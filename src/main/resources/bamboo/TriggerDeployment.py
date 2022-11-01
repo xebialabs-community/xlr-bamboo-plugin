@@ -93,4 +93,4 @@ else:
 environmentId = getEnvironmentId(projectId, environmentName)
 versionId = getVersionId(projectId, versionName)
 (deploymentResultId, href) = triggerDeployment(environmentId, versionId)
-task.schedule("bamboo/TriggerDeployment.wait-for-deployment.py")
+task.schedule("bamboo/TriggerDeployment.wait-for-deployment.py", 30)

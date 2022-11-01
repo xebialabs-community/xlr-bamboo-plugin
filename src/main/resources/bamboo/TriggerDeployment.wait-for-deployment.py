@@ -26,7 +26,7 @@ request = HttpRequest(bambooServer, credentials['username'], credentials['passwo
 
 def getDeploymentStatus():
     print "Executing getDeploymentStatus()\n"
-    response = request.get('rest/api/latest/deployment/result/%s' % str(deploymentResultId), contentType=contentType, headers=headers)
+    response = request.get('rest/api/latest/deploy/result/%s' % str(deploymentResultId), contentType=contentType, headers=headers)
     if response.isSuccessful():
         result = json.loads(response.response)
         return (result['lifeCycleState'], result['deploymentState'])
@@ -55,7 +55,7 @@ if lifeCycleState == "FINISHED":
         print "Error: lifeCycleState is %s and deploymentState is %s" % (lifeCycleState, deploymentState)
         sys.exit(1)
 elif lifeCycleState == "IN_PROGRESS":
-    task.schedule("bamboo/TriggerDeployment.wait-for-deployment.py")
+    task.schedule("bamboo/TriggerDeployment.wait-for-deployment.py", 30)
 else:
     print "Error: Invalid lifeCycleState %s with deploymentState %s" % (lifeCycleState, deploymentState)
     sys.exit(1)
