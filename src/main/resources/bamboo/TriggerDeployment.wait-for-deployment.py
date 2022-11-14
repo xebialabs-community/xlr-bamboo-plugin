@@ -29,24 +29,14 @@ def getDeploymentStatus():
     response = request.get('rest/api/latest/deploy/result/%s' % str(deploymentResultId), contentType=contentType, headers=headers)
     if response.isSuccessful():
         result = json.loads(response.response)
-        return (result['lifeCycleState'], result['deploymentState'])
+        return (result['lifeCycleState'], result['deploymentState'], result['logFiles'][0])
     else:
         print "Error: HTTP status code %s" % str(response.getStatus())
         sys.exit(1)
 
-if projectId:
-    if projectName:
-        if projectId != getProjectId(projectName):
-            print "Error: mismatch between projectId %s and projectName %s" % (projectId, projectName)
-            sys.exit(1)
-else:
-    if projectName:
-        projectId = getProjectId(projectName)
-    else:
-        print "Error: neither projectId nor projectName was specified"
-        sys.exit(1)
+projectId = projectId or foundProjectId
 
-(lifeCycleState, deploymentState) = getDeploymentStatus()
+(lifeCycleState, deploymentState, zerothLogFileRef) = getDeploymentStatus()
 
 if lifeCycleState == "FINISHED":
     if deploymentState == "SUCCESS":

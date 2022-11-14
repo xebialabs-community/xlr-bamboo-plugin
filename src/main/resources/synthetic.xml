@@ -34,21 +34,23 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <property name="state" category="output" />
     </type>
 
-    <type type="bamboo.TriggerDeployment" extends="bamboo.Task">
-        <property name="projectId" category="input" required="false" label="Deployment project id" description="Optional. Provide project name if project id is not known." />
-        <property name="projectName" category="input" required="false" label="Deployment project name" description="Optional.  Provide project id instead if project id is known." />
-        <property name="environmentName" category="input" />
-        <property name="versionName" category="input" />
-        <property name="deploymentResultId" kind="integer" category="output" />
-        <property name="href" label="HREF" category="output" />
-    </type>
-
     <type type="bamboo.CreateRelease" extends="bamboo.Task">
         <property name="projectId" category="input" required="false" label="Deployment project id" description="Optional. Provide project name if project id is not known." />
         <property name="projectName" category="input" required="false" label="Deployment project name" description="Optional. Provide project id instead if project id is known." />
         <property name="planResultKey" category="input" label="Project Build Result" />
         <property name="versionName" category="input" />
         <property name="releaseId" category="output" />
+    </type>
+
+    <type type="bamboo.TriggerDeployment" extends="bamboo.Task">
+        <property name="projectId" category="input" required="false" label="Deployment project id" description="Optional. Provide project name if project id is not known." />
+        <property name="projectName" category="input" required="false" label="Deployment project name" description="Optional.  Provide project id instead if project id is known." />
+        <property name="environmentName" category="input" />
+        <property name="versionName" category="input" />
+        <property name="foundProjectId" category="output" description="Deployment project id found by search on deployment project Name" />
+        <property name="deploymentResultId" kind="integer" category="output" />
+        <property name="href" label="HREF" category="output" />
+        <property name="zerothLogFileRef" category="output" label="logFiles[0]" />
     </type>
 
 </synthetic>

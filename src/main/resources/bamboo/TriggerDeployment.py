@@ -80,16 +80,18 @@ request = HttpRequest(bambooServer, credentials['username'], credentials['passwo
 
 if projectId:
     if projectName:
-        if projectId != getProjectId(projectName):
+        foundProjectId = getProjectId(projectName)
+        if projectId != foundProjectId:
             print "Error: mismatch between projectId %s and projectName %s" % (projectId, projectName)
             sys.exit(1)
 else:
     if projectName:
-        projectId = getProjectId(projectName)
+        foundProjectId = getProjectId(projectName)
     else:
         print "Error: neither projectId nor projectName was specified"
         sys.exit(1)
 
+projectId = projectId or foundProjectId
 environmentId = getEnvironmentId(projectId, environmentName)
 versionId = getVersionId(projectId, versionName)
 (deploymentResultId, href) = triggerDeployment(environmentId, versionId)
