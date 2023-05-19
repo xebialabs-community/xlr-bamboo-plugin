@@ -36,6 +36,13 @@ def getKeyStatesAndTimes(brkey):
 credentials = CredentialsFallback(bambooServer, username, password).getCredentials()
 request = HttpRequest(bambooServer, credentials['username'], credentials['password'])
 response = request.post('/rest/api/latest/queue/' + projPlanKey, '{}', contentType=contentType, headers=headers)
+
+if response.isSuccessful():
+	pass
+else:
+	print "Error: HTTP status code %s" % str(response.getStatus())
+	sys.exit(1)
+
 result = json.loads(response.response)
 buildNumber = result['buildNumber']
 print 'Build number is ' + str(buildNumber) + '\n'
