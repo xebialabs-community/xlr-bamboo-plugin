@@ -71,6 +71,7 @@ projectId = projectId or foundProjectId
 (lifeCycleState, deploymentState, zerothLogFileRef, logEntries) = getDeploymentStatus(deploymentResultId, maxLogLinesPerQuery)
 
 if lifeCycleState == "FINISHED":
+    task.setStatusLine("Triggered Deployment %s / %s" % (lifeCycleState, deploymentState)
     if deploymentState == "SUCCESS":
         print "Deployment has completed successfully."
         print zerothLogFileRef
@@ -87,5 +88,6 @@ elif lifeCycleState == "IN_PROGRESS":
 	task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
     task.schedule("bamboo/TriggerDeployment.wait-for-deployment.py", 30)
 else:
+	task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
     print "Error: Invalid lifeCycleState %s with deploymentState %s" % (lifeCycleState, deploymentState)
     sys.exit(1)
