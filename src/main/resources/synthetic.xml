@@ -47,6 +47,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
         <property name="projectName" category="input" required="false" label="Deployment project name" description="Optional.  Provide project id instead if project id is known." />
         <property name="environmentName" category="input" />
         <property name="versionName" category="input" />
+        <property name="maxLogLinesPerQuery" kind="integer" required="true" default="0" category="input" description="Number of log lines to print per status query" />
         <property name="foundProjectId" category="output" description="Deployment project id found by search on deployment project Name" />
         <property name="deploymentResultId" kind="integer" category="output" />
         <property name="href" label="HREF" category="output" />
