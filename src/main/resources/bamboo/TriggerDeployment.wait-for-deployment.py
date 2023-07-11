@@ -71,7 +71,7 @@ projectId = projectId or foundProjectId
 (lifeCycleState, deploymentState, zerothLogFileRef, logEntries) = getDeploymentStatus(deploymentResultId, maxLogLinesPerQuery)
 
 if lifeCycleState == "FINISHED":
-    task.setStatusLine("Triggered Deployment %s / %s" % (lifeCycleState, deploymentState)
+    task.setStatusLine("Triggered Deployment %s / %s" % (lifeCycleState, deploymentState))
     if deploymentState == "SUCCESS":
         print "Deployment has completed successfully."
         print zerothLogFileRef
