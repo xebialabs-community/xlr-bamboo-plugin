@@ -16,8 +16,8 @@ import com.xhaus.jyson.JysonCodec as json
 print "Executing triggerBambooDeployment.wait-for-deployment.py\n"
 
 if bambooServer is None:
-  print "No server provided."
-  sys.exit(1)
+    print "No server provided."
+    sys.exit(1)
 
 contentType = 'application/json'
 headers = {'accept' : 'application/json'}
@@ -85,9 +85,9 @@ elif lifeCycleState == "IN_PROGRESS":
     if maxLogLinesPerQuery > 0:
         if logEntries:
             printLogEntries(logEntries)
-	task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
+    task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
     task.schedule("bamboo/TriggerDeployment.wait-for-deployment.py", 30)
 else:
-	task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
+    task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
     print "Error: Invalid lifeCycleState %s with deploymentState %s" % (lifeCycleState, deploymentState)
     sys.exit(1)
