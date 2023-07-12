@@ -87,6 +87,9 @@ elif lifeCycleState == "IN_PROGRESS":
             printLogEntries(logEntries)
     task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
     task.schedule("bamboo/TriggerDeployment.wait-for-deployment.py", 30)
+elif lifeCycleState == "QUEUED":
+    task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
+    task.schedule("bamboo/TriggerDeployment.wait-for-deployment.py", 30)
 else:
     task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
     print "Error: Invalid lifeCycleState %s with deploymentState %s" % (lifeCycleState, deploymentState)
