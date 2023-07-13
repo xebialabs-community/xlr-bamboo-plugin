@@ -33,7 +33,7 @@ def getDeploymentStatus(deploymentResultId, maxLogLinesPerQuery):
         response = request.get('rest/api/latest/deploy/result/%s?includeLogs=true&max-result=%s' % (str(deploymentResultId), str(maxLogLinesPerQuery)), contentType=contentType, headers=headers)
         if response.isSuccessful():
             result = json.loads(response.response)
-            return (result['lifeCycleState'], result['deploymentState'], result['logFiles'][0], result['logEntries'])
+            return (result['lifeCycleState'], result['deploymentState'], result['logFiles'], result['logEntries'])
         else:
             print "Error: HTTP status code %s" % str(response.getStatus())
             sys.exit(1)
@@ -41,7 +41,7 @@ def getDeploymentStatus(deploymentResultId, maxLogLinesPerQuery):
         response = request.get('rest/api/latest/deploy/result/%s' % str(deploymentResultId), contentType=contentType, headers=headers)
         if response.isSuccessful():
             result = json.loads(response.response)
-            return (result['lifeCycleState'], result['deploymentState'], result['logFiles'][0], None)
+            return (result['lifeCycleState'], result['deploymentState'], result['logFiles'], None)
         else:
             print "Error: HTTP status code %s" % str(response.getStatus())
             sys.exit(1)
@@ -57,7 +57,7 @@ def printLogEntries(logEntries):
         print "%s %s" % (logEntry['formattedDate'], logEntry['unstyledLog'])
 
 #
-# Example: "http://54.157.13.243:8085/deployment-download/1015809/build_logs/950273-1015809-1146883.log"
+# Example: "http://10.1.2.3:8085/deployment-download/1015809/build_logs/950273-1015809-1146883.log"
 #
 def printLogFile(request, logFileRef):
     m = logFileRefPattern.match(logFileRef)
@@ -68,10 +68,11 @@ def printLogFile(request, logFileRef):
 
 projectId = projectId or foundProjectId
 
-(lifeCycleState, deploymentState, zerothLogFileRef, logEntries) = getDeploymentStatus(deploymentResultId, maxLogLinesPerQuery)
+(lifeCycleState, deploymentState, logFiles, logEntries) = getDeploymentStatus(deploymentResultId, maxLogLinesPerQuery)
+zerothLogFileRef = logFiles[0]
 
 if lifeCycleState == "FINISHED":
-    task.setStatusLine("Triggered Deployment %s / %s" % (lifeCycleState, deploymentState))
+    task.setStatusLine("Deployment %s %s / %s" % (str(deploymentResultId, lifeCycleState, deploymentState))
     if deploymentState == "SUCCESS":
         print "Deployment has completed successfully."
         print zerothLogFileRef
@@ -85,12 +86,12 @@ elif lifeCycleState == "IN_PROGRESS":
     if maxLogLinesPerQuery > 0:
         if logEntries:
             printLogEntries(logEntries)
-    task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
+    task.setStatusLine("Deployment %s %s" % (str(deploymentResultId), lifeCycleState))
     task.schedule("bamboo/TriggerDeployment.wait-for-deployment.py", 30)
 elif lifeCycleState == "QUEUED":
-    task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
+    task.setStatusLine("Deployment %s %s" % (str(deploymentResultId), lifeCycleState))
     task.schedule("bamboo/TriggerDeployment.wait-for-deployment.py", 30)
 else:
-    task.setStatusLine("Triggered Deployment %s" % lifeCycleState)
+    task.setStatusLine("Deployment %s %s" % (str(deploymentResultId), lifeCycleState))
     print "Error: Invalid lifeCycleState %s with deploymentState %s" % (lifeCycleState, deploymentState)
     sys.exit(1)
