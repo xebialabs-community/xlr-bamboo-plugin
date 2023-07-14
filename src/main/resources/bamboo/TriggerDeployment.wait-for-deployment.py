@@ -72,7 +72,7 @@ projectId = projectId or foundProjectId
 zerothLogFileRef = logFiles[0]
 
 if lifeCycleState == "FINISHED":
-    task.setStatusLine("Deployment %s %s / %s" % (str(deploymentResultId, lifeCycleState, deploymentState))
+    task.setStatusLine("Deployment %s %s / %s" % (str(deploymentResultId), lifeCycleState, deploymentState))
     if deploymentState == "SUCCESS":
         print "Deployment has completed successfully."
         print zerothLogFileRef
